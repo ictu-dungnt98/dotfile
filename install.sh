@@ -3,9 +3,11 @@
 function link_dotfile() {
   echo "Linking dotfiles"
 
+  rm ~/.tmux.conf
+  rm ~/.vimrc
+
   ln -s $(pwd)/tmux.conf ~/.tmux.conf
   ln -s $(pwd)/vimrc ~/.vimrc
-  ln -s $(pwd)/vim ~/.vim
 }
 
 function install() {

@@ -2,9 +2,14 @@
 
 function link_dotfile() {
   echo "Linking dotfiles"
+  
+  if [ -f ~/.tmux.conf ]; then
+    rm ~/.tmux.conf
+  fi
 
-  rm ~/.tmux.conf
-  rm ~/.vimrc
+  if [ -f ~/.vimrc ]; then
+    rm ~/.vimrc
+  fi
 
   ln -s $(pwd)/tmux.conf ~/.tmux.conf
   ln -s $(pwd)/vimrc ~/.vimrc
@@ -26,9 +31,7 @@ function backup() {
 
 if [[ "${1}" = "backup" ]]; then
   backup  
-fi
-
-if [ "${1}" = "install" ]; then
+elif [ "${1}" = "install" ] || [ -z "${1}" ]; then
   install
   link_dotfile
 fi
